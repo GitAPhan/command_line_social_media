@@ -16,6 +16,7 @@ while True:
         username = input("Enter your username: ")
         password = getpass('Enter you password: ')
 
+        # store login_status and hacker_id returned from function
         login_status, hacker = db.attempt_login(username, password)
 
         # login attempt
@@ -49,11 +50,14 @@ while True:
         selection = input("Please make your selection: ")
 
         # conditional to add in arguement only if option 4 isnt selected
-        if selection == 4:
-            print('Goodbye!')
-            options[selection]
+        if selection == '4':
+            print('-------------- Goodbye!! --------------')
+            print('Thank you for visiting CLI Social Media')
+            print('-------------- Goodbye!! --------------')
+            options[selection]()
         else:
             options[selection](hacker[0])
-    except IndexError:
+    except KeyError:
+        print('---------- Error Message -----------')
         print('The selection you made seems invalid')
         print('-------- Please try again! ---------')
